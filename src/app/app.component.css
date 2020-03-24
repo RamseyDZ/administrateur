@@ -1,0 +1,19 @@
+
+.profile-card{
+    text-align: center;
+    padding: 0 20px 20px 20px;
+}
+
+#exitButton {
+    width: 100 px;
+    height: 100 px;
+    
+}
+
+.mat-toolbar .titreLogo img#logo{
+    max-width: 100px !important;
+    
+}
+.mat-list-base .mat-subheader {
+    padding: 0px;
+}

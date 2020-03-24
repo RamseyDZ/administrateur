@@ -1,0 +1,37 @@
+
+  .inner-wrapper mat-card {
+    display: inline-block;
+    margin: 2% 6% 0 1%;
+    vertical-align: top;
+  }
+  mat-card table{
+      min-width: 280px;
+  }
+  .inner-wrapper .table-card {
+    width: 53%;
+  }
+  .inner-wrapper .insert-card {
+    width: 33%;
+  }
+
+  @media (max-width: 1024px) {
+    .inner-wrapper .table-card,.inner-wrapper .insert-card{
+       
+    }
+  
+  }
+  
+  @media (max-width: 767px) {
+    .inner-wrapper .table-card,.inner-wrapper .insert-card{
+        
+    }
+  }
+
+  @media (max-width: 600px) {
+    .inner-wrapper .table-card,.inner-wrapper .insert-card{
+        width: 100%;
+        margin: 1% 0 2% 0;
+    }
+  }
+
+  

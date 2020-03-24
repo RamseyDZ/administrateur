@@ -1,0 +1,108 @@
+<!-- Title group  -->
+<div class="title-group">
+  <h2 class="mat-h2">Nouveau utilisateur</h2>
+  <mat-divider fxFlex="1 1"></mat-divider>
+</div>
+
+
+<!-- Form -->
+<div class="inner-wrapper">
+  <form [formGroup]="userForm" (ngSubmit)="submitUserForm()" #resetUserForm="ngForm" novalidate>
+
+    <!-- Left block -->
+    <mat-card>
+      <div class="controlers-wrapper">
+
+        <!-- Name -->
+        <mat-form-field class="example-full-width">
+          <input matInput formControlName="nomUtilisateur" placeholder="Nom d'utilisateur" autocomplete="false">
+          <mat-error *ngIf="handleError('nomUtilisateur', 'required')">
+            Vous devez saisie un <strong>Nom d'utilisateur</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Prenom -->
+        <mat-form-field class="example-full-width">
+          <input matInput formControlName="prenomUtilisateur" placeholder="Prénom ">
+          <mat-error *ngIf="handleError('prenomUtilisateur', 'required')">
+            Vous devez saisie un <strong>Prénom d'utilisateur</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Login -->
+        <mat-form-field class="example-full-width">
+          <input matInput formControlName="login" placeholder="Login ">
+          <mat-error *ngIf="handleError('login', 'required')">
+            Vous devez saisie un <strong>Login</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </mat-card>
+
+    <!-- Right block -->
+    <mat-card>
+      <div class="controlers-wrapper">
+
+        <!-- Email -->
+        <mat-form-field class="example-full-width">
+          <input matInput id="email" formControlName="emailUtilisateur" placeholder="Email ">
+          <mat-error *ngIf="handleError('emailUtilisateur', 'email')">
+            Vous devez saisie un <strong>email valide</strong>
+          </mat-error>
+          <mat-error *ngIf="handleError('emailUtilisateur', 'required')">
+            <strong>L'email </strong>est obligatoire.
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Password -->
+        <mat-form-field class="example-full-width">
+          <input matInput type="password" [type]="masquer ? 'password':'text'" id="motPasse" placeholder="Mot de passe" formControlName="passwordControl">
+          <mat-icon-button matSuffix  aria-label="clear" matSuffix (click)="masquer=!masquer">
+            <mat-icon>{{masquer ? 'visibility':'visibility_off'}}</mat-icon>
+          </mat-icon-button>
+          <!-- Afficher les regles de saisie d'un mot de passe -->
+          <mat-error *ngIf="handleError('passwordControl', 'minlength')">
+            Au minimum <strong>8 caractères </strong>
+          </mat-error>
+          <mat-error *ngIf="handleError('passwordControl', 'required')">
+            <strong>Le mot de passe  </strong>est obligatoire
+          </mat-error>          
+        </mat-form-field>
+
+        <!-- Confirme Password -->
+        <mat-form-field class="example-full-width">
+          <input matInput type="password" id="confirmMotPasse" placeholder="Confimer le mot de passe" formControlName="cPassword">
+          <mat-icon-button matSuffix  aria-label="clear" matSuffix (click)="masquerConfirm=!masquerConfirm">
+            <mat-icon>{{masquerConfirm ? 'visibility':'visibility_off'}}</mat-icon>
+          </mat-icon-button>
+          
+          <mat-error>
+            mot de passe <strong>doit contenir des carctères min et majuscule </strong>
+          </mat-error>
+        </mat-form-field>
+
+      </div>
+    </mat-card>
+
+    <div class="controlers-wrapper">
+      <!-- Gender -->
+      <div class="misc-bottom-padding">
+        <mat-radio-group aria-label="Choisir un rôle" [(ngModel)]="roleUtilisateur" [formControl]="roleControle">
+          <mat-radio-button default value="collaborateur">Collaborateur</mat-radio-button>
+          <mat-radio-button value="responsable">Responsable admin</mat-radio-button>
+          <mat-radio-button value="administrateur">Administrateur</mat-radio-button>
+        </mat-radio-group>
+      </div>
+    </div>
+
+    <!-- Envoyer -->
+    <mat-card>
+      <div class="full-wrapper button-wrapper">
+        <div class="button-wrapper">
+          <button mat-flat-button color="primary">Submit</button>
+        </div>
+      </div>
+    </mat-card>
+
+  </form>
+</div>

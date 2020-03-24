@@ -1,0 +1,15 @@
+.list-users table {
+    width: 100%;  
+    min-width: 600px; 
+  }
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+
+  @media(max-width: 600px){
+    .list-users table {
+      width: 100%;  
+      min-width: 400px !important; 
+    }
+  }
