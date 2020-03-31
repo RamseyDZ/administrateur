@@ -1,0 +1,25 @@
+<mat-card-header>
+    <mat-toolbar clas="toolbar">
+        <mat-card-title>Ajouter une catégorie</mat-card-title>
+        <span class="toolbar-spacer"></span>
+        <mat-icon (click)="onNoClick()">cancel</mat-icon>
+    </mat-toolbar>
+</mat-card-header>
+<mat-card-content>
+    <div class="container">
+        <form [formGroup]="_noteTypeForm" (submit)="onSubmit()">
+            <div class="controlers-wrapper">
+
+                <!-- Catégorie -->
+                <mat-form-field class="example-full-width">
+                    <input matInput formControlName="nomCategorie" placeholder="catégorie de frais" required>                    
+                </mat-form-field>
+            </div> 
+            <div class="full-wrapper button-wrapper">
+                <div class="button-wrapper">
+                  <button type="submit" mat-flat-button color="primary">Ajouter</button>
+                </div>
+              </div>
+        </form>
+    </div>
+</mat-card-content>

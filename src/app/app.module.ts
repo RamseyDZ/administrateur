@@ -1,3 +1,4 @@
+import { AddTypeComponent } from './components/type-frais/add-type/add-type.component';
 import { BrowserModule } from '@angular/platform-browser';
 import {  RouterModule } from '@angular/router';
 
@@ -15,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 /* Angular 9 CRUD services */
 import { ApiService } from './shared/api.service';
+import { NoteTypeService} from './shared/note-type.service';
 
 /* Reactive form services in Angular 9 */
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -35,7 +37,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule
   ],
   exports: [RouterModule],
-  providers: [ApiService],
+  providers: [ApiService, NoteTypeService],
+  entryComponents: [AddTypeComponent],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

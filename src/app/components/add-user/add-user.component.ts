@@ -24,10 +24,9 @@ export class AddUserComponent implements OnInit {
   addOnBlur = true;
   @ViewChild('chipList') chipList;
   @ViewChild('resetUserForm', { static: true }) myNgForm;
-  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   userForm: FormGroup;
   
-  roleUtilisateur:string;
+  userRole:string;
 
   ngOnInit() {
       this.submitBookForm();
@@ -39,9 +38,7 @@ export class AddUserComponent implements OnInit {
     private userApi: ApiService
   ) { }
 
-    /* Controler le role non selectionner */ 
-    roleControle = new FormControl('',[Validators.required,Validators.email]);
-
+   
   /* Reactive book form */
   submitBookForm() {
       this.userForm = this.fb.group({
@@ -49,7 +46,7 @@ export class AddUserComponent implements OnInit {
       prenomUtilisateur: ['', [Validators.required]],
       login:['', [Validators.required]],
       emailUtilisateur: ['', [Validators.email,Validators.required]],     
-      roleUtilisateur :['collaborateur',[Validators.required]],
+      roleUtilisateur :[''],
       passwordControl:['',[Validators.minLength(8),Validators.required]],
       cPassword:['']
     })
@@ -62,12 +59,15 @@ export class AddUserComponent implements OnInit {
   }  
 
   /* Submit book */
+  
   /* Aprés avoir enregistré un utilisateur la liste de toutes les utilisateurs s'affiche */ 
   submitUserForm() {
     if (this.userForm.valid) {
-      this.userApi.AddUser(this.userForm.value).subscribe(res => {
-        this.ngZone.run(() => this.router.navigateByUrl('/users-list'))
-      });
+     // this.userApi.AddUser(this.userForm.value).subscribe(res => {
+        this.ngZone.run(() => this.router.navigateByUrl('/users-list'));
+        console.warn(this.userForm.value);
+     // });
+    
     }
   }
 

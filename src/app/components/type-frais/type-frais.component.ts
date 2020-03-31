@@ -1,20 +1,24 @@
-import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource} from '@angular/material/table';
+import { NoteType } from './../../model/note-type';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatTableDataSource, MatTable } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { NoteTypeService } from 'src/app/shared/note-type.service';
+import { AddTypeComponent } from './add-type/add-type.component';
 
 export interface categorieElement {
   categorie: string;
 }
-
+/*
 const ELEMENT_DATA: categorieElement[] = [
-  {categorie: "Hotel"},
-  {categorie: "Carburant"},
-  {categorie: "Restauration"},
-  {categorie: "Transport"},
-  {categorie: "Téléphone"},
-  {categorie: "Abonnement"},
-  {categorie: "Déplacement"},
+  { categorie: "Hotel" },
+  { categorie: "Carburant" },
+  { categorie: "Restauration" },
+  { categorie: "Transport" },
+  { categorie: "Téléphone" },
+  { categorie: "Abonnement" },
+  { categorie: "Déplacement" },
 ];
-
+*/
 @Component({
   selector: 'app-type-frais',
   templateUrl: './type-frais.component.html',
@@ -22,14 +26,33 @@ const ELEMENT_DATA: categorieElement[] = [
 })
 export class TypeFraisComponent implements OnInit {
 
-  listData = new MatTableDataSource(ELEMENT_DATA);
-  
-  displayedColumns: string[] = ['categorie','actions'];
+  listData = new MatTableDataSource(this.typeFraisList);
 
-  constructor() { }
+  displayedColumns: string[] = ['nomCategorie', 'actions'];
+
+  isPopupOpened = false;
+  @ViewChild(MatTable,{static:true}) table: MatTable<any>;
+  constructor(private dialog?: MatDialog,
+    private _noteTypeService?: NoteTypeService) { }
 
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
+  get typeFraisList() {
+    return this._noteTypeService.getAllTypes();
+  }
+
+  addContact() {
+    this.isPopupOpened = true;
+    const dialogRef = this.dialog.open(AddTypeComponent, {
+      data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      //this.listData = new MatTableDataSource(this.typeFraisList);
+      this.table.renderRows();
+      this.isPopupOpened = false;
+    });
+  }
 }

@@ -6,7 +6,7 @@ import { AddUserComponent } from './components/add-user/add-user.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { UsersListComponent } from './components/users-list/users-list.component';
 import { TypeFraisComponent } from './components/type-frais/type-frais.component';
-
+import { AddTypeComponent } from './components/type-frais/add-type/add-type.component';
 
 
 const routes: Routes = [
@@ -23,4 +23,11 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 
-export const routingComponents = [AddUserComponent,EditUserComponent,UsersListComponent,TypeFraisComponent];
+export const routingComponents = 
+  [
+    AddUserComponent,  
+    EditUserComponent,  
+    UsersListComponent,  
+    TypeFraisComponent,  
+    AddTypeComponent
+];

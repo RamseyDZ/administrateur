@@ -36,7 +36,7 @@ export class UsersListComponent implements OnInit {
 
   listData = new MatTableDataSource(ELEMENT_DATA);
   
-  
+  // Pour changer entre l'affichage mobile et l'affichage desktop
   displayedColumnsDesktop: string[] = ['nom','prenom','login','email','actions'];
   displayedColumnsMobile: string[] = ['nom','prenom','login','actions'];
   displayedColumns:string[] = this.displayedColumnsDesktop;

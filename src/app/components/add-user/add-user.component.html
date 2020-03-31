@@ -15,7 +15,7 @@
 
         <!-- Name -->
         <mat-form-field class="example-full-width">
-          <input matInput formControlName="nomUtilisateur" placeholder="Nom d'utilisateur" autocomplete="false">
+          <input matInput formControlName="nomUtilisateur" placeholder="Nom d'utilisateur" autocomplete="false" required>
           <mat-error *ngIf="handleError('nomUtilisateur', 'required')">
             Vous devez saisie un <strong>Nom d'utilisateur</strong>
           </mat-error>
@@ -23,7 +23,7 @@
 
         <!-- Prenom -->
         <mat-form-field class="example-full-width">
-          <input matInput formControlName="prenomUtilisateur" placeholder="Prénom ">
+          <input matInput formControlName="prenomUtilisateur" placeholder="Prénom " required>
           <mat-error *ngIf="handleError('prenomUtilisateur', 'required')">
             Vous devez saisie un <strong>Prénom d'utilisateur</strong>
           </mat-error>
@@ -31,7 +31,7 @@
 
         <!-- Login -->
         <mat-form-field class="example-full-width">
-          <input matInput formControlName="login" placeholder="Login ">
+          <input matInput formControlName="login" placeholder="Login " required>
           <mat-error *ngIf="handleError('login', 'required')">
             Vous devez saisie un <strong>Login</strong>
           </mat-error>
@@ -45,7 +45,7 @@
 
         <!-- Email -->
         <mat-form-field class="example-full-width">
-          <input matInput id="email" formControlName="emailUtilisateur" placeholder="Email ">
+          <input matInput id="email" formControlName="emailUtilisateur" placeholder="Email" required>
           <mat-error *ngIf="handleError('emailUtilisateur', 'email')">
             Vous devez saisie un <strong>email valide</strong>
           </mat-error>
@@ -56,7 +56,7 @@
 
         <!-- Password -->
         <mat-form-field class="example-full-width">
-          <input matInput type="password" [type]="masquer ? 'password':'text'" id="motPasse" placeholder="Mot de passe" formControlName="passwordControl">
+          <input matInput type="password" [type]="masquer ? 'password':'text'" placeholder="Mot de passe" formControlName="passwordControl" required>
           <mat-icon-button matSuffix  aria-label="clear" matSuffix (click)="masquer=!masquer">
             <mat-icon>{{masquer ? 'visibility':'visibility_off'}}</mat-icon>
           </mat-icon-button>
@@ -71,13 +71,13 @@
 
         <!-- Confirme Password -->
         <mat-form-field class="example-full-width">
-          <input matInput type="password" id="confirmMotPasse" placeholder="Confimer le mot de passe" formControlName="cPassword">
+          <input matInput type="password" placeholder="Confimer le mot de passe" formControlName="cPassword" required>
           <mat-icon-button matSuffix  aria-label="clear" matSuffix (click)="masquerConfirm=!masquerConfirm">
             <mat-icon>{{masquerConfirm ? 'visibility':'visibility_off'}}</mat-icon>
           </mat-icon-button>
           
-          <mat-error>
-            mot de passe <strong>doit contenir des carctères min et majuscule </strong>
+          <mat-error >
+            mot de passe <strong>doit contenir des carctères miniscule et majuscule </strong>
           </mat-error>
         </mat-form-field>
 
@@ -87,8 +87,8 @@
     <div class="controlers-wrapper">
       <!-- Gender -->
       <div class="misc-bottom-padding">
-        <mat-radio-group aria-label="Choisir un rôle" [(ngModel)]="roleUtilisateur" [formControl]="roleControle">
-          <mat-radio-button default value="collaborateur">Collaborateur</mat-radio-button>
+        <mat-radio-group aria-label="Choisir un rôle" [(ngModel)]="userRole" formControlName="roleUtilisateur">
+          <mat-radio-button value="collaborateur">Collaborateur</mat-radio-button>
           <mat-radio-button value="responsable">Responsable admin</mat-radio-button>
           <mat-radio-button value="administrateur">Administrateur</mat-radio-button>
         </mat-radio-group>
@@ -99,7 +99,9 @@
     <mat-card>
       <div class="full-wrapper button-wrapper">
         <div class="button-wrapper">
-          <button mat-flat-button color="primary">Submit</button>
+          <button type="submit" mat-flat-button color="primary">
+            <mat-icon>save</mat-icon>
+          </button>
         </div>
       </div>
     </mat-card>
