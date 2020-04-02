@@ -46,7 +46,7 @@
         <!-- Email -->
         <mat-form-field class="example-full-width">
           <input matInput id="email" formControlName="emailUtilisateur" placeholder="Email" required>
-          <mat-error *ngIf="handleError('emailUtilisateur', 'email')">
+          <mat-error *ngIf="handleError('emailUtilisateur', 'pattern')">
             Vous devez saisie un <strong>email valide</strong>
           </mat-error>
           <mat-error *ngIf="handleError('emailUtilisateur', 'required')">
@@ -71,7 +71,7 @@
 
         <!-- Confirme Password -->
         <mat-form-field class="example-full-width">
-          <input matInput type="password" placeholder="Confimer le mot de passe" formControlName="cPassword" required>
+          <input matInput type="password" [type]="masquerConfirm ? 'password':'text'" placeholder="Confimer le mot de passe" formControlName="cPassword" required>
           <mat-icon-button matSuffix  aria-label="clear" matSuffix (click)="masquerConfirm=!masquerConfirm">
             <mat-icon>{{masquerConfirm ? 'visibility':'visibility_off'}}</mat-icon>
           </mat-icon-button>

@@ -18,11 +18,6 @@ export interface Subject {
 export class AddUserComponent implements OnInit {
   masquer = true;
   masquerConfirm = true;
-  visible = true;
-  selectable = true;
-  removable = true;
-  addOnBlur = true;
-  @ViewChild('chipList') chipList;
   @ViewChild('resetUserForm', { static: true }) myNgForm;
   userForm: FormGroup;
   
@@ -38,14 +33,20 @@ export class AddUserComponent implements OnInit {
     private userApi: ApiService
   ) { }
 
-   
+  // Validators.compose([
+    //                    Validators.required,
+  //                      Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')	]) 
+
   /* Reactive book form */
+  public patternEmail='^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+([\.]{1}[a-zA-Z0-9]{2,6})+$';
+
   submitBookForm() {
       this.userForm = this.fb.group({
       nomUtilisateur: ['', [Validators.required]],
       prenomUtilisateur: ['', [Validators.required]],
       login:['', [Validators.required]],
-      emailUtilisateur: ['', [Validators.email,Validators.required]],     
+      emailUtilisateur: ['', [Validators.pattern(this.patternEmail),
+        Validators.required]],     
       roleUtilisateur :[''],
       passwordControl:['',[Validators.minLength(8),Validators.required]],
       cPassword:['']
