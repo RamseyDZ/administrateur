@@ -1,4 +1,5 @@
-import { NoteType } from './../../model/note-type';
+//import { NoteType } from './../../model/note-type';
+import {MatPaginator} from '@angular/material/paginator';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatTable } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
@@ -28,15 +29,18 @@ export class TypeFraisComponent implements OnInit {
 
   listData = new MatTableDataSource(this.typeFraisList);
 
-  displayedColumns: string[] = ['nomCategorie', 'actions'];
+  displayedColumns: string[] = ['nomCategorie','state', 'actions'];
 
   isPopupOpened = false;
   @ViewChild(MatTable,{static:true}) table: MatTable<any>;
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+
   constructor(private dialog?: MatDialog,
     private _noteTypeService?: NoteTypeService) { }
 
 
   ngOnInit() {
+    
   }
 
   get typeFraisList() {
@@ -52,6 +56,7 @@ export class TypeFraisComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       //this.listData = new MatTableDataSource(this.typeFraisList);
       this.table.renderRows();
+      this.listData.paginator = this.paginator;
       this.isPopupOpened = false;
     });
   }

@@ -2,7 +2,7 @@
     <mat-toolbar clas="toolbar">
         <mat-card-title>Ajouter une catégorie</mat-card-title>
         <span class="toolbar-spacer"></span>
-        <mat-icon (click)="onNoClick()">cancel</mat-icon>
+        <mat-icon mat-suffix (click)="onNoClick()">cancel</mat-icon>
     </mat-toolbar>
 </mat-card-header>
 <mat-card-content>
@@ -14,6 +14,7 @@
                 <mat-form-field class="example-full-width">
                     <input matInput formControlName="nomCategorie" placeholder="catégorie de frais" required>                    
                 </mat-form-field>
+                <mat-slide-toggle formControlName="state" checked #slide required [formControl]="autoRenew">{{slide.checked ? 'Active':'Desactiver'}}</mat-slide-toggle>
             </div> 
             <div class="full-wrapper button-wrapper">
                 <div class="button-wrapper">

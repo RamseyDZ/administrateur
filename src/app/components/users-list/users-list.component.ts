@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { utilisateur } from './../../model/user';
+import { MatPaginator } from '@angular/material/paginator';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from 'src/app/shared/api.service';
 import { MatTableDataSource} from '@angular/material/table';
 
-export interface PeriodicElement {
+
+export interface user {
   nom: string;
   login: string;
   email: string;
   prenom: string;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
+const ELEMENT_DATA: user[] = [
   {login: "bouchram", nom: 'BOUCHAIR', email:'bouchairramzi@gmail.com', prenom: 'RAMZI'},
   {login: "dahmatina", nom: 'DAHMANI', email:'bouchairramzi@gmail.com', prenom: 'TINHINANE'},
   {login: "oufqumer", nom: 'OUFQUIR', email:'bouchairramzi@gmail.com', prenom: 'MEROUANE'},
@@ -32,7 +35,7 @@ export class UsersListComponent implements OnInit {
 
   constructor(private service: ApiService) { }
 
-  
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   listData = new MatTableDataSource(ELEMENT_DATA);
   
@@ -56,6 +59,10 @@ export class UsersListComponent implements OnInit {
     this.service.GetUsers().subscribe();
   }
 
+  ngAfterViewInit(){
+    this.listData.paginator = this.paginator;
+  }
+
   showColumns(): string[]{
     if (window.innerWidth < 600) {
       this.displayedColumns = this.displayedColumnsMobile;
@@ -63,6 +70,10 @@ export class UsersListComponent implements OnInit {
       this.displayedColumns = this.displayedColumnsDesktop
     }
     return this.displayedColumns;
+  }
+
+  lineClick(login){
+    console.warn("l'utilisateur selectionner est "+login);
   }
 
 }

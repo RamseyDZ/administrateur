@@ -1,3 +1,4 @@
+import { FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { FormGroup, Form } from '@angular/forms';
@@ -20,7 +21,7 @@ export class AddTypeComponent implements OnInit {
     private _noteTypeService: NoteTypeService,
     @Inject(MAT_DIALOG_DATA) public data: any){}
     
-
+    autoRenew = new FormControl();
     onNoClick(): void{
       this.dialogRef.close();
     }
@@ -28,7 +29,7 @@ export class AddTypeComponent implements OnInit {
     this._noteTypeForm = this._formBuilder.group({
       id:[],
       nomCategorie:['',[Validators.required]],
-      state:[true,[Validators.required]]
+      state:[]
     });
   }
 
